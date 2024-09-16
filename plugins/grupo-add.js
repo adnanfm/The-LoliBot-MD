@@ -1,22 +1,48 @@
-import fetch from 'node-fetch'
+let handler = async (m, { conn, args, text, usedPrefix, command }) => {
+let who 
+if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
+else who = m.chat
+let name = await conn.getName(m.sender)	
+let user = global.db.data.users[who]
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`, fkontak, m) 
+if (!text) throw `${lenguajeGB['smsAvisoMG']()} ${lenguajeGB['smsMalused']()}\n*${usedPrefix + command}* 59355555555`
+if (text.includes('+')) throw  `${lenguajeGB['smsAvisoMG']()}𝙄𝙉𝙂𝙍𝙀𝙎𝙀 𝙀𝙇 𝙉𝙐𝙈𝙀𝙍𝙊 𝙏𝙊𝘿𝙊 𝙅𝙐𝙉𝙏𝙊 𝙎𝙄𝙉  𝙀𝙡 *+*`
+let group = m.chat
+let link = 'https://chat.whatsapp.com/' + await conn.groupInviteCode(group)
+ 
+      await conn.reply(text+'@s.whatsapp.net', `Hola! me presento, soy The-LoliBot-MD ✨ y soy un Bot para WhatsApp, una persona del grupo utilizo el comando para añadirte al grupo, pero no pude agregarte, asi que te mando la invitacion para que te agregues, te esperamos!!\n\n${link}`, m, {mentions: [m.sender]})
+        m.reply(`*@${who.split`@`[0]}*\n*Enviando invitacion a su privado...*`) 
+
+}
+handler.help = ['add', '+'].map(v => v + ' número')
+handler.tags = ['group']
+handler.command = /^(add|agregar|invitar|invite|añadir|\+)$/i
+handler.group = true
+handler.admin = true
+handler.botAdmin = true
+handler.fail = null
+export default handler
+//import fetch from 'node-fetch'
 /**
  * @type {import('@adiwajshing/baileys')}
  */
-const { getBinaryNodeChild, getBinaryNodeChildren } = (await import('@adiwajshing/baileys')).default
+/*const { getBinaryNodeChild, getBinaryNodeChildren } = (await import('@adiwajshing/baileys')).default
 let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
-if (!global.db.data.settings[conn.user.jid].restrict) throw `𝙀𝙨𝙩𝙚 𝙘𝙤𝙢𝙖𝙣𝙙𝙤 𝙚𝙨𝙩𝙖 𝙖𝙥𝙖𝙜𝙖𝙙𝙤, 𝙀𝙡 𝙥𝙧𝙤𝙥𝙞𝙚𝙩𝙖𝙧𝙞𝙤 𝙙𝙚𝙡 𝙗𝙤𝙩 𝙙𝙚𝙗𝙚𝙧 𝙖𝙘𝙩𝙞𝙫𝙖𝙡𝙤𝙨 𝘾𝙤𝙣 \n#on restrict | #off restrict`
+const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net"}
+if (!global.db.data.settings[conn.user.jid].restrict) return conn.reply(m.chat, `${lenguajeGB['smsAvisoAG']()}${lenguajeGB['smsSoloOwner']()}`, fkontak, m) 
 try {
-  let _participants = participants.map(user => user.jid)
-  let users = (await Promise.all(
-    text.split(',')
-      .map(v => v.replace(/[^0-9]/g, ''))
-      .filter(v => v.length > 4 && v.length < 20 && !_participants.includes(v + '@s.whatsapp.net'))
-      .map(async v => [
-        v,
-        await conn.onWhatsApp(v + '@s.whatsapp.net')
-      ])
-  )).filter(v => v[1]).map(v => v[0] + '@c.us')
-  let response = await conn.query({
+let _participants = participants.map(user => user.jid)
+let users = (await Promise.all(
+text.split(',')
+.map(v => v.replace(/[^0-9]/g, ''))
+.filter(v => v.length > 4 && v.length < 20 && !_participants.includes(v + '@s.whatsapp.net'))
+.map(async v => [
+v,
+await conn.onWhatsApp(v + '@s.whatsapp.net')
+])
+)).filter(v => v[1]).map(v => v[0] + '@c.us')
+let response = await conn.query({
         tag: 'iq',
         attrs: {
             type: 'set',
@@ -28,20 +54,20 @@ try {
             attrs: {},
             content: [{ tag: 'participant', attrs: { jid } }]
 }))})
-    const pp = await conn.profilePictureUrl(m.chat).catch(_ => null)
-    const jpegThumbnail = pp ? await (await fetch(pp)).buffer() : Buffer.alloc(0)
-    const add = getBinaryNodeChild(response, 'add')
-    const participant = getBinaryNodeChildren(add, 'participant')
-    for (const user of participant.filter(item => item.attrs.error == 403)) {
-        const content = getBinaryNodeChild(user, 'add_request')
-        const invite_code = content.attrs.code
-        const invite_code_exp = content.attrs.expiration
-        let teks = `𝑵𝒐 𝒔𝒆 𝒑𝒖𝒅𝒐 𝒂𝒈𝒓𝒆𝒈𝒂𝒓 𝒂𝒍 𝒏𝒖́𝒎𝒆𝒓𝒐, 𝒇𝒊́𝒋𝒂𝒕𝒆 𝒔𝒊 𝒆𝒍 𝒏𝒖́𝒎𝒆𝒓𝒐 𝒆𝒔 𝒄𝒐𝒓𝒓𝒆𝒄𝒕𝒐, 𝒕𝒂𝒍 𝒗𝒆𝒛 𝒍𝒂 𝒑𝒆𝒓𝒔𝒐𝒏𝒂 𝒔𝒂𝒍𝒊𝒐́ 𝒓𝒆𝒄𝒊𝒆𝒏𝒕𝒆𝒎𝒆𝒏𝒕𝒆 𝒅𝒆𝒍 𝒈𝒓𝒖𝒑𝒐, 𝒐 𝒕𝒊𝒆𝒏𝒆 𝒄𝒐𝒏𝒇𝒊𝒈𝒖𝒓𝒂𝒅𝒐 𝒍𝒂 𝒑𝒓𝒊𝒗𝒂𝒄𝒊𝒅𝒂𝒅 𝒅𝒆𝒍 𝒈𝒓𝒖𝒑𝒐. 𝑫𝒆 𝒔𝒆𝒓 𝒂𝒔𝒊́ 𝒆𝒏𝒗𝒊𝒆́ 𝒖𝒏𝒂 𝒊𝒏𝒗𝒊𝒕𝒂𝒄𝒊𝒐́𝒏 𝒎𝒂𝒏𝒖𝒂𝒍𝒎𝒆𝒏𝒕𝒆.`
-        m.reply(teks, null, {
-        mentions: conn.parseMention(teks)
+const pp = await conn.profilePictureUrl(m.chat).catch(_ => null)
+const jpegThumbnail = pp ? await (await fetch(pp)).buffer() : Buffer.alloc(0)
+const add = getBinaryNodeChild(response, 'add')
+const participant = getBinaryNodeChildren(add, 'participant')
+for (const user of participant.filter(item => item.attrs.error == 403)) {
+const content = getBinaryNodeChild(user, 'add_request')
+const invite_code = content.attrs.code
+const invite_code_exp = content.attrs.expiration
+let teks = `${lenguajeGB['smsAddB1']()}`
+m.reply(teks, null, {
+mentions: conn.parseMention(teks)
 })}
 } catch (e) {
-throw m.reply(`𝑵𝒐 𝒔𝒆 𝒑𝒖𝒅𝒐 𝒂𝒈𝒓𝒆𝒈𝒂𝒓 𝒂𝒍 𝒏𝒖́𝒎𝒆𝒓𝒐, 𝒇𝒊́𝒋𝒂𝒕𝒆 𝒔𝒊 𝒆𝒍 𝒏𝒖́𝒎𝒆𝒓𝒐 𝒆𝒔 𝒄𝒐𝒓𝒓𝒆𝒄𝒕𝒐, 𝒕𝒂𝒍 𝒗𝒆𝒛 𝒍𝒂 𝒑𝒆𝒓𝒔𝒐𝒏𝒂 𝒔𝒂𝒍𝒊𝒐́ 𝒓𝒆𝒄𝒊𝒆𝒏𝒕𝒆𝒎𝒆𝒏𝒕𝒆 𝒅𝒆𝒍 𝒈𝒓𝒖𝒑𝒐, 𝒐 𝒕𝒊𝒆𝒏𝒆 𝒄𝒐𝒏𝒇𝒊𝒈𝒖𝒓𝒂𝒅𝒐 𝒍𝒂 𝒑𝒓𝒊𝒗𝒂𝒄𝒊𝒅𝒂𝒅 𝒅𝒆𝒍 𝒈𝒓𝒖𝒑𝒐. 𝑫𝒆 𝒔𝒆𝒓 𝒂𝒔𝒊́ 𝒆𝒏𝒗𝒊𝒆́ 𝒖𝒏𝒂 𝒊𝒏𝒗𝒊𝒕𝒂𝒄𝒊𝒐́𝒏 𝒎𝒂𝒏𝒖𝒂𝒍𝒎𝒆𝒏𝒕𝒆.`)}
+throw m.reply(`${lenguajeGB['smsAddB2']()}`)}
 }
 handler.help = ['add', '+'].map(v => v + ' número')
 handler.tags = ['group']
@@ -50,4 +76,4 @@ handler.group = true
 handler.admin = true
 handler.botAdmin = true
 handler.fail = null
-export default handler
+export default handler*/

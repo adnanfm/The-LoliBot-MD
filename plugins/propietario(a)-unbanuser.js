@@ -1,16 +1,15 @@
-let handler = async (m, { conn, text, command, usedPrefix }) => {
-if (!text) throw `${mg}𝑬𝒕𝒊𝒒𝒖𝒆𝒕𝒂𝒔 𝒂𝒍𝒈𝒖𝒏 𝒖𝒔𝒖𝒂𝒓𝒊𝒐 𝒑𝒂𝒓𝒂 𝒅𝒆𝒔𝒃𝒂𝒏𝒆𝒂\n𝑬𝒋𝒆𝒎𝒑𝒍𝒐\n*${usedPrefix + command} @tag*`
+let handler = async (m, { conn, text}) => {
+if (!text) throw '𝙀𝙩𝙞𝙦𝙪𝙚𝙩𝙖𝙨 𝙖𝙡𝙜𝙪𝙣 𝙪𝙨𝙪𝙖𝙧𝙞𝙤𝙨 𝙥𝙖𝙧𝙖 𝙙𝙚𝙨𝙗𝙖𝙣𝙚𝙖\n𝙚𝙟𝙚𝙢𝙥𝙡𝙤: *@tag*'
 let who
 if (m.isGroup) who = m.mentionedJid[0]
 else who = m.chat
-if (!who) throw `${mg}𝑬𝒕𝒊𝒒𝒖𝒆𝒕𝒂𝒔 𝒂𝒍𝒈𝒖𝒏 𝒖𝒔𝒖𝒂𝒓𝒊𝒐 𝒑𝒂𝒓𝒂 𝒅𝒆𝒔𝒃𝒂𝒏𝒆𝒂\n𝑬𝒋𝒆𝒎𝒑𝒍𝒐\n*${usedPrefix + command} @tag*`
+if (!who) throw '𝙀𝙩𝙞𝙦𝙪𝙚𝙩𝙖𝙨 𝙖𝙡𝙜𝙪𝙣 𝙪𝙨𝙪𝙖𝙧𝙞𝙤𝙨 𝙥𝙖𝙧𝙖 𝙙𝙚𝙨𝙗𝙖𝙣𝙚𝙖 \n𝙚𝙟𝙚𝙢𝙥𝙡𝙤: *@tag*'
 let users = global.db.data.users
 users[who].banned = false
-conn.reply(m.chat, `${eg}𝑬𝒍 𝒖𝒔𝒖𝒂𝒓𝒊𝒐 𝒇𝒖𝒆 𝒅𝒆𝒔𝒃𝒂𝒏𝒆𝒂𝒅𝒐(𝒂)🤩\n𝑷𝒐𝒃𝒓𝒂 𝒖𝒔𝒂 𝒂 ${gt}`, m)
+conn.reply(m.chat, `*𝙀𝙡 𝙪𝙨𝙪𝙖𝙧𝙞𝙤 𝙛𝙪𝙚 𝙙𝙚𝙨𝙗𝙖𝙣𝙚𝙖𝙙𝙤 🤩\n𝙥𝙤𝙙𝙧𝙖 𝙪𝙨𝙖𝙧 𝙖 𝙚𝙡 𝙗𝙤𝙩`, m)
 }
 handler.help = ['unbanuser']
 handler.tags = ['owner']
 handler.command = /^unbanuser$/i
-handler.group = true
-handler.admin = true 
+handler.rowner = true
 export default handler

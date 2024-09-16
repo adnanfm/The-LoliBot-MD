@@ -1,17 +1,25 @@
-let handler = async (m, { conn }) => {
-let txt = ''
-let vn = './media/listas.mp3'
-for (let [jid, chat] of Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats)) txt += `\n🐈 ${await conn.getName(jid)}\n🔸 ${jid} \n${chat?.metadata?.read_only ? '❌ *𝑺𝒊𝒏 𝒆𝒔𝒕𝒂𝒓 𝒂𝒒𝒖𝒊 | 𝑵𝒐*' : '✅ *𝑺𝒊𝒈𝒐 𝒂𝒒𝒖𝒊 | 𝒀𝒆𝒔*'}\n\n`
-m.reply(`*${gt} 𝑬𝒔𝒕𝒂 𝒆𝒏 𝒆𝒔𝒕𝒐𝒔 𝒈𝒓𝒖𝒑𝒐𝒔:*`.trim())
+import PhoneNumber from 'awesome-phonenumber'
+let handler = async (m, { conn, __dirname, isRowner, isOwner, isBotAdmin, usedPrefix, groupMetadata, groups, _package, participants }) => { 
+const fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net"
+}
 
-conn.sendHydrated(m.chat, txt, wm, null, 'https://github.com/elrebelde21/The-LoliBot-MD', '𝑻𝒉𝒆 𝑳𝒐𝒍𝒊𝑩𝒐𝒕-𝑴𝑫', null, null, [
-['𝙑𝙤𝙡𝙫𝙚𝙧 𝙖𝙡 𝙈𝙚𝙣𝙪́ ☘️', '.menu'],
-['𝘾𝙪𝙚𝙣𝙩𝙖𝙨 𝙊𝙛𝙞𝙘𝙞𝙖𝙡𝙚𝙨 ✅', '/cuentasgb']
-], m,)
-conn.sendFile(m.chat, vn, 'listas.mp3', null, m, true, { type: 'audioMessage', ptt: true, sendEphemeral: true })
+let txt
+const chats = Object.entries(conn.chats).filter(([jid, data]) => jid && data.isChats)
+groups = Object.values(await conn.groupFetchAllParticipating())
+txt = `${lb} ${lenguajeGB.smsLisA()}
+${lenguajeGB.smsLisB()} ${groups.length}\n`
+
+for (let i = 0; i < groups.length; i++) {
+txt += ` 
+${lenguajeGB.smsLisC()} ${groups[i].subject}
+${lenguajeGB.smsLisD()} ${groups[i].id}
+${isOwner ? `${lenguajeGB.smsLisE()} ${groups[i].participants.length}` : ''}\n\n`
+}
+m.reply(txt.trim())
 }
 handler.help = ['groups', 'grouplist']
 handler.tags = ['info']
 handler.command = /^(groups|grouplist|listadegrupo|gruposlista|listagrupos|listadegrupos|grupolista|listagrupo)$/i
-handler.exp = 30
+handler.exp = 5
+handler.register = true
 export default handler

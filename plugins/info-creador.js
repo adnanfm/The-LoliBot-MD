@@ -1,42 +1,105 @@
-let handler = async (m, { conn, usedPrefix }) => {
-var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
-var document = doc[Math.floor(Math.random() * doc.length)]    
-let text = `
+let MessageType =  (await import(global.baileys)).default
+let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
+  let chat = global.db.data.chats[m.chat]
+let user = global.db.data.users[m.sender]
+let bot = global.db.data.settings[conn.user.jid] || {}
+let name = await conn.getName(m.sender)
+  let type = (args[0] || '').toLowerCase()
+  let _type = (args[0] || '').toLowerCase()
+let totalreg = Object.keys(global.db.data.users).length
+let pp = gataVidMenu.getRandom()
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+  let vn = './media/creador.mp3'
+
+//------- Nombre
+  let nowner = `${wm.split`@`[0]}@s.whatsapp.net`
+  let teksnomor = `
+• @${wm.split`@`[0]} •
+------- ${wm} -------
+`
+
+//------------ BIO
+let ppown = await conn.profilePictureUrl(nomorown + '@s.whatsapp.net', 'image').catch(_ => imagen1[1]) 
+let teksbio = `
 *𝘾𝙤𝙣𝙩𝙖𝙘𝙩𝙤* 
-wa.me/5492266466080* *(no bot)*
-*wa.me/972529277406 (bot)*
-*wa.me/972529277535 (bot²)*
-`.trim()   
-let buttonMessage= {
-'document': { url: `https://github.com/BrunoSobrino/TheMystic-Bot-MD` },
-'mimetype': `application/${document}`,
-'fileName': `「  𝑯𝒆𝒍𝒍𝒐 𝑾𝒐𝒓𝒍𝒅 」`,
-'fileLength': 99999999999999,
-'pageCount': 200,
-'contextInfo': {
-'forwardingScore': 200,
-'isForwarded': true,
-'externalAdReply': {
-'mediaUrl': 'https://github.com/BrunoSobrino/TheMystic-Bot-MD',
-'mediaType': 2,
-'previewType': 'pdf',
-'title': 'ᴇʟ ᴍᴇᴊᴏʀ ʙᴏᴛ ᴅᴇ ᴡʜᴀᴛsᴀᴘᴘ⁩',
-'body': wm,
-'thumbnail': imagen1,
-'sourceUrl': 'https://www.youtube.com/channel/UCSTDMKjbm-EmEovkygX-lCA' }},
-'caption': text,
-'footer': wm,
-'buttons':[
-{buttonId: `${usedPrefix}menu`, buttonText: {displayText: '👾 𝙼𝙴𝙽𝚄 👾'}, type: 1}, 
-{buttonId: `${usedPrefix}donar`, buttonText: {displayText: '📮 𝙳𝙾𝙽𝙰𝚁 📮'}, type: 1}],
-'headerType': 6 }
-conn.sendMessage(m.chat, buttonMessage, { quoted: m })
-//let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:;𝑩𝒓𝒖𝒏𝒐 𝑺𝒐𝒃𝒓𝒊𝒏𝒐 👑;;;\nFN:𝑩𝒓𝒖𝒏𝒐 𝑺𝒐𝒃𝒓𝒊𝒏𝒐 👑\nORG:𝑩𝒓𝒖𝒏𝒐 𝑺𝒐𝒃𝒓𝒊𝒏𝒐 👑\nTITLE:\nitem1.TEL;waid=5219996125657:+521 999 612 5657\nitem1.X-ABLabel:𝑩𝒓𝒖𝒏𝒐 𝑺𝒐𝒃𝒓𝒊𝒏𝒐 👑\nX-WA-BIZ-DESCRIPTION:[❗] ᴄᴏɴᴛᴀᴄᴛᴀ ᴀ ᴇsᴛᴇ ɴᴜᴍ ᴘᴀʀᴀ ᴄᴏsᴀs ɪᴍᴘᴏʀᴛᴀɴᴛᴇs.\nX-WA-BIZ-NAME:𝑩𝒓𝒖𝒏𝒐 𝑺𝒐𝒃𝒓𝒊𝒏𝒐 👑\nEND:VCARD`
-//await conn.sendMessage(m.chat, { contacts: { displayName: 'Bruno Sobrino 👑', contacts: [{ vcard }] }}, {quoted: m})
-//const data = global.owner.filter(([id, isCreator]) => id && isCreator)
-//await conn.sendContact(m.chat, data.map(([id, name]) => [id, name]), m)
+*Wa.me/5492266466080 (no bot)*
+*Wa.me/573183650526 (bot)*
+*wa.me/59894668250 (bot ²)*
+`
+  let teks = ' '
+const sections = [
+   {
+	title: `𝙋𝙍𝙊𝙋𝙄𝙀𝙏𝘼𝙍𝙄𝙊/𝙊𝙒𝙉𝙀𝙍`,
+	rows: [
+	    {title: "🔰 • NUMERO", rowId: ".owner bio"},
+	{title: "🌐 • CUENTAS OFICIALES", rowId: ".cuentasgb"},
+	{title: "🙌 • GRUPOS", rowId: ".grupos"},
+	]
+    },{
+	title: `–––––––·• 𝘼𝙋𝙊𝙔𝘼 𝘼𝙇 𝘽𝙊𝙏 –––––––·•`,
+	rows: [
+	{title: "🤖 • INSTALARBOT", rowId: ".instalarbot"},
+	{title: "🌟 • SC", rowId: "Sc"},
+	]
+  },
+]
+
+const listMessage = {
+text: `~ *PROPIETARIO/OWNER DEL BOT*`,
+footer: `╭┄〔 *OWNER* 〕┄⊱
+┆ *Hola👋 ${name}*
+┆——————«•»——————
+┆• 𝙑𝙚𝙧𝙨𝙞𝙤𝙣 𝙙𝙚𝙡 𝙗𝙤𝙩: ${vs}  
+┆———————————
+┆• 𝙏𝙤𝙩𝙖𝙡 𝙙𝙚𝙡 𝙐𝙨𝙪𝙖𝙧𝙞𝙤𝙨: *${totalreg}* 
+┆———————————
+┆• 𝙈𝙤𝙙𝙤: ${global.db.data.settings[conn.user.jid].self ? '*Privado*' : '*Público*'}
+┆———————————
+┆• 𝙋𝙧𝙚𝙛𝙞𝙟𝙤: *${usedPrefix}* 
+┆———————————
+┆• 𝙋𝙧𝙚𝙢𝙞𝙪𝙢: ${user.premiumTime > 0 ? 'Siu ✅' : 'No ❌'}
+┆———————————
+┆• 𝘾𝙝𝙖𝙩(𝙨) 𝙋𝙧𝙤𝙝𝙞𝙗𝙞𝙙𝙤(𝙨): ${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length} 
+┆———————————
+┆• 𝙐𝙨𝙪𝙖𝙧𝙞𝙤(𝙨) 𝙋𝙧𝙤𝙝𝙞𝙗𝙞𝙙𝙤(𝙨): ${Object.entries(global.db.data.users).filter(user => user[1].banned).length} 
+╰━━━⊰ 𓃠 ${vs} ⊱━━━━დ
+${wm}`,
+title: null,
+buttonText: `HAGA CLICK AQUI`,
+sections }
+
+  try {
+    if (/(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)/i.test(command)) {
+      const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
+        switch (type) {
+          case 'nomor':
+          conn.reply(m.chat, "LoliBot-MD", m, { contextInfo: { mentionedJid: [nowner] }})
+           break
+            case 'bio':
+          await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', teksbio, fkontak)
+            break
+          default:
+            return await conn.sendMessage(m.chat, listMessage, { quoted: m, contextInfo: { mentionedJid: [m.sender] }})
+        }
+    } else if (/aoaooaoaooaoa/i.test(command)) {
+      const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
+      switch (_type) {
+        case 't':
+          break
+        case '':
+          break
+
+        default:
+          return await conn.sendFile(m.chat, gataImg.getRandom(), 'gata.jpg', teksbio, fkontak)
+      }
+    }
+  } catch (err) {
+    m.reply("Error\n\n\n" + err.stack)
+  }
+conn.sendFile(m.chat, vn, 'creador.mp3', null, m, true, { type: 'audioMessage', ptt: true, sendEphemeral: true })
 }
 handler.help = ['owner', 'creator']
 handler.tags = ['info']
-handler.command = /^(owner|creator|creador|propietario)$/i
+handler.command = /^(contacto|owner|creator|propietario|dueño|dueña|propietaria|dueño|creadora|creador)$/i
+
 export default handler

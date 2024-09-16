@@ -4,7 +4,7 @@ let handler = async(m, { conn }) => {
 if (!db.data.chats[m.chat].stickers && m.isGroup) throw 0
 
 let nombre = '𝑻𝒉𝒆 𝑳𝒐𝒍𝒊𝑩𝒐𝒕-𝑴𝑫'
-let nombre2 = 'xd' 
+let nombre2 = 'Xd' 
  
 const s = [
 'https://c.tenor.com/-8qgEEd80skAAAAi/chika.gif',
@@ -20,9 +20,12 @@ const s = [
 ];  
  
 let stiker = await sticker(null, s[Math.floor(Math.random() * s.length)], nombre, nombre2)
-conn.sendFile(m.chat, stiker, null, { asSticker: true })
+await delay(5 * 5000)
+if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: wm, body: `h`, mediaType: 2, sourceUrl: nn, thumbnail: imagen1}}}, { quoted: m })
 }
 handler.customPrefix = /animada|animado|alegré|alegre|feliz|felis|contento|contenta|gusto|alegría|alegrarse|alegremonos|emocionado|emocionada|😀|😃|😄|😁|😸|😺|👻/i 
 handler.command = new RegExp
 handler.exp = 50
 export default handler
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))

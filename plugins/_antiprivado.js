@@ -1,18 +1,16 @@
-export async function before(m, { isAdmin, isBotAdmin, isOwner, isROwner }) {
-    if (m.isBaileys && m.fromMe)
-        return !0
-    if (m.isGroup)
-       return !1
-    if (!m.message)
-       return !0
-    if (m.text.includes('PIEDRA') || m.text.includes('PAPEL') || m.text.includes('TIJERA'))
-       return !0
-    let chat = global.db.data.chats[m.chat]
-    let bot = global.db.data.settings[this.user.jid] || {}
-    
-    if (bot.antiPrivate && !isOwner && !isROwner) {
-       await m.reply(`𝙃𝙤𝙡𝙖 *@${m.sender.split`@`[0]}*, 𝙀𝙨𝙩𝙖́ 𝙥𝙧𝙤𝙝𝙞𝙗𝙞𝙙𝙤 𝙝𝙖𝙗𝙡𝙖𝙧 𝙖𝙡 𝙥𝙧𝙞𝙫𝙖𝙙𝙤 𝙙𝙚𝙡 𝙗𝙤𝙩 𝙨𝙚𝙧𝙖́𝙨 𝙗𝙡𝙤𝙦𝙪𝙚𝙖𝙙𝙤.\n 𝙃𝙖𝙗𝙡𝙖𝙧 𝙘𝙤𝙣 𝙢𝙞 𝙤𝙬𝙣𝙚𝙧 𝙨𝙞 𝙦𝙪𝙞𝙚𝙧𝙚 𝙦𝙪𝙚 𝙙𝙚𝙨𝙗𝙡𝙤𝙦𝙪𝙚𝙚. wa.me/5492266466080\n\n 𝙂𝙧𝙪𝙥𝙤 𝙖𝙨𝙞𝙨𝙩𝙚𝙣𝙘𝙞𝙖 𝙛𝙖𝙘𝙚𝙗𝙤𝙤𝙠: https://facebook.com/groups/721802642266362/`, false, { mentions: [m.sender] })
-       await this.updateBlockStatus(m.chat, 'block')
-    }
-    return !1
-}
+//by https://github.com/elrebelde21
+ 
+export async function before(m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }) {
+if (m.isBaileys && m.fromMe) return !0
+if (m.isGroup) return !1
+if (!m.message) return !0 
+if (m.text.includes('PIEDRA') || m.text.includes('PAPEL') || m.text.includes('TIJERA') ||  m.text.includes('menu') ||  m.text.includes('estado') || m.text.includes('bots') || m.text.includes('deletebot') ||  m.text.includes('eliminarsesion') ||  m.text.includes('deletesesion') || m.text.includes('serbot') || m.text.includes('jadibot')) return !0
+let chat = global.db.data.chats[m.chat]
+let user = global.db.data.users[m.sender]
+let bot = global.db.data.settings[this.user.jid] || {}
+if (bot.antiPrivate && !isOwner && !isROwner) {
+await m.reply(`Hola *@${m.sender.split`@`[0]}*, Esta prohibido usar el bot el privado\n\n✴️solo si quiere hacerte un bot manda el comando .serbot\n\n🚫NO USAR LOS COMANDO DEL BOT AL PV🚫\n\nPara usar el bot unirte al grupo del oficial del el bot\n${nn}`, false, { mentions: [m.sender] })
+await conn.groupParticipantsUpdate(m.chat, [m.sender], 'banchat')
+return !1
+}}
+

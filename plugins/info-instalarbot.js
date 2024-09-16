@@ -1,86 +1,214 @@
-let handler = async (m, { conn, usedPrefix }) => {
-let pp = 'https://i.imgur.com/lkch77g.jpeg' 
-var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
-var document = doc[Math.floor(Math.random() * doc.length)]    
-await m.reply(`╰⊱🔰⊱ *𝑰𝒏𝒔𝒕𝒂𝒍𝒂𝒄𝒊𝒐𝒏* ⊱🔰⊱╮`)
-  //conn.sendButton(m.chat, str, author, await(await fetch(pp)).buffer(), [['Menu', '/menu']], m)
-let texto1 = `
- 𝙋𝙖𝙨𝙤 𝙙𝙚 𝙡𝙖 𝙞𝙣𝙨𝙩𝙖𝙡𝙖𝙘𝙞𝙤𝙣
- 𝑻𝒉𝒆 𝑳𝒐𝒍𝒊𝑩𝒐𝒕-𝑴𝑫 𝒚𝒂 𝒆𝒔𝒕𝒂 𝒍𝒊𝒔𝒕𝒂 𝒑𝒂𝒓𝒂 𝒍𝒂 𝒊𝒏𝒔𝒕𝒂𝒍𝒂𝒄𝒊𝒐𝒏
+//import { generateWAMessageFromContent } from '@adiwajshing/baileys'
+let { generateWAMessageFromContent } = (await import(global.baileys)).default 
+let handler  = async (m, { conn }) => {
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+let texto = `*◄┢┅͜͡✇⟬↯ື ►ஜ۩💥۩ஜ◄ ↯ື⟭✇͜͡┅┧►*
 
- 𝒔𝒊 𝒏𝒆𝒄𝒆𝒔𝒊𝒕𝒂𝒔 𝒂𝒚𝒖𝒅𝒂 𝒆𝒏𝒕𝒓𝒂 𝒂𝒍 𝒈𝒓𝒖𝒑𝒐 𝒅𝒆𝒍 𝒃𝒐𝒕
+*𝙑𝙄𝘿𝙀𝙊 𝘿𝙀 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉*
+*https://youtu.be/gh5NajZOTA8*
 
-📌 *https://chat.whatsapp.com/Lus9S60MABnH9lF4Wf2T7k*
+✨ *Grupo Actualizaciones y novedades sobre el bot*
+📌 *${global.nna}*
 
- 𝑶 𝒆𝒔𝒄𝒓𝒊𝒃𝒊𝒎𝒆 𝒂𝒍 wa.me/5492266466080*
- 𝒔𝒐𝒍𝒐 𝒑𝒐𝒓 𝒕𝒆𝒎𝒂 𝒅𝒆𝒍 𝒃𝒐𝒕
+💛 *Si tienes dudas o necesitas ayuda en el proceso de la instalación puede escribir me a este número (No es Bot el número)*
 
-📌 𝒑𝒂𝒔𝒐 𝒑𝒂𝒓𝒂 𝒊𝒏𝒔𝒕𝒂𝒍𝒂𝒓 𝒆𝒍 𝒃𝒐𝒕 𝒆𝒍 𝒕𝒆𝒓𝒎𝒖𝒙
- 
-📌 𝒄𝒐𝒎𝒐 𝒊𝒏𝒔𝒕𝒂𝒍𝒂𝒓 𝒆𝒍 𝒃𝒐𝒕 *https://youtu.be/gh5NajZOTA8*
+📲 *Wa.me/5492266466080*
 
-🔸 𝒏𝒆𝒄𝒆𝒔𝒊𝒕𝒂 2 𝒄𝒆𝒍𝒖 𝒔𝒐𝒍𝒐 𝒑𝒂𝒓𝒂 𝒆𝒔𝒄𝒂𝒏𝒆𝒂𝒓 𝒆𝒍 𝑸𝑹
-🔸 𝑰𝒏𝒔𝒕𝒂𝒍𝒂𝒓 𝒕𝒆𝒓𝒎𝒖𝒙 𝒅𝒆 𝑮𝒐𝒐𝒈𝒍𝒆
+❗ *_Solo para temas de instalación_*
 
- 𝒑𝒂𝒔𝒐 𝒏𝒖𝒎𝒆𝒓𝒐 1*
+───────•••───────
+
+✨ 𝙍𝙀𝙌𝙐𝙄𝙎𝙄𝙏𝙊𝙎 𝙋𝘼𝙍𝘼 𝙇𝘼 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉 ✨
+
+✅ _1 GB de almacenamiento_
+✅ _Aplicación Termux (actualizada)_
+✅ _Un WhatsApp recomiendo el WhatsApp normal_
+✅ _Un número virtual (si es ofc mejor)_
+✅ _2 dispositivos o una PC para escanear_
+
+───────•••───────
+
+✨ 𝙂𝙄𝙏𝙃𝙐𝘽 > 𝙍𝙀𝙋𝙊𝙎𝙄𝙏𝙊𝙍𝙄𝙊
+*_Visita mí repositorio 😸 para más información, si te agrada el Bot apoya me con una ⭐️ ¡Gracias!_*
+
+${md}
+
+───────•••───────
+
+📌 *𝙋𝘼𝙎𝙊 𝙋𝘼𝙍𝘼 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝙍 𝙀𝙇 𝘽𝙊𝙏 𝙀𝙇 𝙏𝙀𝙍𝙈𝙐𝙓*
+📌 *𝙊𝙋𝘾𝙄𝙊𝙉: 1 𝙂𝙄𝙏𝙃𝙐𝘽*
 
 🔸 termux-setup-storage
-    (𝒍𝒆 𝒅𝒂𝒓 𝒆𝒍 𝒑𝒆𝒓𝒎𝒊𝒕𝒆)
 
-🔸  apt update 
+🔸 apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/elrebelde21/The-LoliBot-MD/master/install.sh | bash
 
-🔸  pkg upgrade 
+📌 *𝙊𝙋𝘾𝙄𝙊𝙉: 2 𝘼𝙍𝘾𝙃𝙄𝙑𝙊*
+*https://youtu.be/i1xjB4bmYCc*
 
-🔸 pkg install git -y
+🔸 termux-setup-storage
 
-🔸 pkg install nodejs -y
+🔸 pkg update -y && pkg upgrade -y && pkg install -y bash && pkg install -y wget && pkg install yarn
 
-🔸 pkg install ffmpeg -y
-
-🔸 pkg install imagemagick -y
-
-🔸 pkg install yarn
-
-🔸 git clone https://github.com/elrebelde21/The-LoliBot-MD
-
-🔸  cd The-LoliBot-MD
-
-🔸 npm install
-
-🔸 yarn install 
-
-🔸 npm install
-
-🔸 npm update
+🔸 cd storage/downloads/Lolibot
 
 🔸 ls
 
-🔸 npm start 
- (𝒚 𝒂𝒄𝒂 𝒒𝒖𝒆 𝒗𝒂𝒏 𝒎𝒂𝒏𝒅𝒂 𝒆𝒍 𝑸𝑹 𝒕𝒆𝒏𝒆𝒓 𝒍𝒂  𝒐𝒑𝒄𝒊𝒐𝒏 𝒔𝒂𝒄𝒂 𝒖𝒏𝒂 𝒄𝒂𝒑𝒕𝒖𝒓𝒂 𝒚 𝒎𝒂𝒏𝒅𝒂𝒍𝒂  𝒂 𝒕𝒖 𝒐𝒕𝒓𝒐 𝒄𝒆𝒍𝒖 𝒚 𝒆𝒔𝒄𝒂𝒏𝒆𝒂)
+🔸 npm start
 
- 𝒄𝒖𝒂𝒍𝒒𝒖𝒊𝒆𝒓 𝒄𝒐𝒔𝒂 𝒉𝒂𝒃𝒍𝒂𝒎𝒆 𝒔𝒐𝒍𝒐 𝒑𝒐𝒓 𝒕𝒆𝒎𝒂 𝒅𝒆𝒍 𝒃𝒐𝒕🔰🤖
- 𝑺𝒂𝒍𝒖𝒅𝒐𝒔🔰🤖`
-let buttonMessage= {
-'document': { url: `https://youtu.be/HyCqmXDHGeQ` },
-'mimetype': `application/${document}`,
-'fileName': `𝑻𝒉𝒆 𝑳𝒐𝒍𝒊𝑩𝒐𝒕-𝑴𝑫`,
-'fileLength': 99999999999999,
-'pageCount': 200,
-'contextInfo': {
-'forwardingScore': 200,
-'isForwarded': true,
-'externalAdReply': {
-'mediaUrl': 'https://youtu.be/HyCqmXDHGeQ',
-'mediaType': 2,
-'previewType': 'pdf',
-'title': 'tutorial del instalación',
-'body': wm,
- }},
-'caption': texto1,
-'footer': wm,
-'buttons':[
-{buttonId: `${usedPrefix}menu`, buttonText: {displayText: '𝑻𝒉𝒆 𝑳𝒐𝒍𝒊𝑩𝒐𝒕-𝑴𝑫'}, type: 1}],
-'headerType': 6 }
-conn.sendMessage(m.chat, buttonMessage, { quoted: m })}
-handler.command = /^(instalarbot|instalarbot)$/i
+───────•••───────
+
+📌 𝗜𝗡𝗦𝗧𝗔𝗟𝗔𝗥 𝗘𝗡 𝗕𝗢𝗫𝗠𝗜𝗡𝗘
+
+*𝙏𝙝𝙚-𝙇𝙤𝙡𝙞𝘽𝙤𝙩-𝙈𝘿 : 𝘽𝙤𝙭𝙈𝙞𝙣𝙚*
+*_https://youtu.be/wWyBHtKzx9Q_*
+
+_Pagina Oficial_ 
+_https://boxmineworld.com_
+
+_Panel_
+_https://panel.boxmineworld.com_
+
+───────•••───────
+
+📌 𝗜𝗡𝗦𝗧𝗔𝗟𝗔𝗥 𝗘𝗡 𝙍𝙀𝙋𝙇𝙄𝙏 
+
+*𝙏𝙝𝙚-𝙇𝙤𝙡𝙞𝘽𝙤𝙩-𝙈𝘿 : 𝙍𝙀𝙋𝙇𝙄𝙏*
+https://youtu.be/SMjCcfuyWQE
+
+_Pagina Oficial_ 
+https://replit.com/
+
+*◄┢┅͜͡✇⟬↯ື ►ஜ۩💥۩ஜ◄ ↯ື⟭✇͜͡┅┧►*
+
+💥 INFO EXTRA 💥_
+➤ _Se sugiere leer el archivo README.md_
+➤ _Bot compartible con WhatsApp multi device_
+➤ _Para habilitar el /añadir y el /sacar usa /enable restrict_ _Puede ocasionar que el numero se vaya a soporte_
+➤ _Recomiendo que active el autoread con (#on autoread)_
+➤ _Cualquier cosa hablame solo por tema del bot🔰🤖_
+_Saludos 🔰🤖_` 
+let aa = { quoted: m, userJid: conn.user.jid }
+let prep = generateWAMessageFromContent(m.chat, { extendedTextMessage: { text: texto, contextInfo: { externalAdReply: { title: 'ᴛʜᴇ-ʟᴏʟɪʙᴏᴛ-ᴍᴅ', body: null, thumbnail: imagen1, sourceUrl: 'https://youtu.be/gh5NajZOTA8' }, mentionedJid: [m.sender] }}}, aa)
+conn.relayMessage(m.chat, prep.message, { messageId: prep.key.id, mentions: [m.sender] })  
+}
+handler.command = /^(instalarbot)/i
 export default handler
+
+/*
+//LOS BOTONES NO FUNKA EL LA NUEVA ACTUALIZACIÓN DE WHATSAPP :(
+let handler  = async (m, { conn, usedPrefix, command }) => {
+const fkontak = {
+	"key": {
+    "participants":"0@s.whatsapp.net",
+		"remoteJid": "status@broadcast",
+		"fromMe": false,
+		"id": "Halo"
+	},
+	"message": {
+		"contactMessage": {
+			"vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
+		}
+	},
+	"participant": "0@s.whatsapp.net"
+}
+
+let picture = './media/menus/Menu1.jpg'
+await m.reply(`╰⊱🔰⊱ *𝑰𝒏𝒔𝒕𝒂𝒍𝒂𝒄𝒊𝒐𝒏* ⊱🔰⊱╮`)
+let instalar = `*◄┢┅͜͡✇⟬↯ື ►ஜ۩💥۩ஜ◄ ↯ື⟭✇͜͡┅┧►*
+
+💥 𝙔𝙖 𝙥𝙪𝙚𝙙𝙚 𝙞𝙣𝙨𝙩𝙖𝙡𝙖𝙧 𝙖 𝙏𝙝𝙚-𝙇𝙤𝙡𝙞𝘽𝙤𝙩-𝙈𝘿 ❕
+
+*𝙑𝙄𝘿𝙀𝙊 𝘿𝙀 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉*
+*https://youtu.be/gh5NajZOTA8*
+
+✨ *Si necesitas ayuda entra al grupo del bot*
+📌 *${global.nna}*
+
+💛 *Si tienes dudas o necesitas ayuda en el proceso de la instalación puede escribir me a este número (No es Bot el número)*
+
+📲 *Wa.me/5492266466080*
+
+❗ *_Solo para temas de instalación_*
+
+───────•••───────`
+
+conn.sendButton(m.chat, instalar, `✨ 𝙍𝙀𝙌𝙐𝙄𝙎𝙄𝙏𝙊𝙎 𝙋𝘼𝙍𝘼 𝙇𝘼 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉 ✨
+
+✅ _1 GB de almacenamiento_
+✅ _Aplicación Termux (actualizada)_
+✅ _Un WhatsApp recomiendo el WhatsApp normal_
+✅ _Un número virtual (si es ofc mejor)_
+✅ _2 dispositivos o una PC para escanear_
+
+───────•••───────
+
+✨ 𝙂𝙄𝙏𝙃𝙐𝘽 > 𝙍𝙀𝙋𝙊𝙎𝙄𝙏𝙊𝙍𝙄𝙊
+*_Visita mí repositorio 😸 para más información, si te agrada el Bot apoya me con una ⭐️ ¡Gracias!_*
+
+${md}
+
+───────•••───────
+
+📌 *𝙋𝘼𝙎𝙊 𝙋𝘼𝙍𝘼 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝙍 𝙀𝙇 𝘽𝙊𝙏 𝙀𝙇 𝙏𝙀𝙍𝙈𝙐𝙓*
+📌 *𝙊𝙋𝘾𝙄𝙊𝙉: 1 𝙂𝙄𝙏𝙃𝙐𝘽*
+
+🔸 termux-setup-storage
+🔸 apt update
+🔸 pkg upgrade
+🔸 pkg install git -y
+🔸 pkg install nodejs -y
+🔸 pkg install ffmpeg -y
+🔸 pkg install imagemagick -y
+🔸 git clone https://github.com/elrebelde21/The-LoliBot-MD
+🔸 cd The-LoliBot-MD
+🔸 npm install
+🔸 ls
+🔸 npm start
+
+📌 *𝙊𝙋𝘾𝙄𝙊𝙉: 2 𝘼𝙍𝘾𝙃𝙄𝙑𝙊*
+*https://youtu.be/i1xjB4bmYCc*
+
+🔸 termux-setup-storage
+🔸 apt update 
+🔸 pkg upgrade 
+🔸 pkg install git -y
+🔸 pkg install nodejs -y
+🔸 pkg install ffmpeg -y
+🔸 pkg install imagemagick -y
+🔸 pkg install yarn
+🔸 cd storage/downloads/Lolibot
+🔸 ls
+🔸 npm start
+
+───────•••───────
+
+📌 𝗜𝗡𝗦𝗧𝗔𝗟𝗔𝗥 𝗘𝗡 𝗕𝗢𝗫𝗠𝗜𝗡𝗘
+
+*𝙏𝙝𝙚-𝙇𝙤𝙡𝙞𝘽𝙤𝙩-𝙈𝘿 : 𝘽𝙤𝙭𝙈𝙞𝙣𝙚*
+*_https://youtu.be/wWyBHtKzx9Q_*
+
+_Pagina Oficial_ 
+_https://boxmineworld.com_
+
+_Panel_
+_https://panel.boxmineworld.com_
+
+───────•••───────
+
+📌 𝗜𝗡𝗦𝗧𝗔𝗟𝗔𝗥 𝗘𝗡 𝙍𝙀𝙋𝙇𝙄𝙏 
+
+*𝙏𝙝𝙚-𝙇𝙤𝙡𝙞𝘽𝙤𝙩-𝙈𝘿 : 𝙍𝙀𝙋𝙇𝙄𝙏*
+https://youtu.be/SMjCcfuyWQE
+
+_Pagina Oficial_ 
+https://replit.com/
+
+───────•••───────
+
+
+*◄┢┅͜͡✇⟬↯ື ►ஜ۩💥۩ஜ◄ ↯ື⟭✇͜͡┅┧►*\n\n💥 INFO EXTRA 💥\n➤ Se sugiere leer el archivo README.md \n➤ Bot compartible con WhatsApp multi device \n➤ Para habilitar el /añadir y el /sacar usa /enable restrict \n- Puede ocasionar que el numero se vaya a soporte \n➤ Cualquier cosa hablame solo por tema del bot🔰🤖\nSaludos 🔰🤖\n\n${wm}`, picture, [
+['𝘾𝙪𝙚𝙣𝙩𝙖𝙨 𝙊𝙛𝙞𝙘𝙞𝙖𝙡𝙚𝙨  ✅', '.cuentasgb']], fkontak, m)}
+
+handler.command = /^(instalarbot|instalargatabot|instalargata|procesobot|botproceso|procesodelbot|botinstall|installbot)/i
+export default handler
+*/
